@@ -1,21 +1,21 @@
 require_relative './lib.rb'
 load 'resource.rb'
 
-class CommentsController
+class PostsController
   extend Resource
 
   def initialize
-    @comments = []
+    @posts = []
   end
 
   def index
-    @comments.each.with_index do |comment, index|
-      puts "[#{index}] #{comment}"
+    @posts.each.with_index do |post, index|
+      puts "[#{index}] #{post}"
     end
   end
 
   def show
-    print "Enter index of comment to show: "
+    print "Enter index of post to show: "
     input = gets
 
     if int_argument_error?(input)
@@ -30,21 +30,21 @@ class CommentsController
       return 'error'
     end
 
-    puts "[#{index}] #{@comments[index]}"
+    puts "[#{index}] #{@posts[index]}"
   end
 
   def create
-    print "Write a comment: "
-    comment = gets.chomp
+    print "Write a post: "
+    post = gets.chomp
 
-    @comments << comment
+    @posts << post
 
-    puts "Index of your comment: #{@comments.find_index(comment)}"
-    puts "Text of your comment: #{comment}"
+    puts "Index of your post: #{@posts.find_index(post)}"
+    puts "Text of your post: #{post}"
   end
 
   def update
-    print "Enter index of comment to update: "
+    print "Enter index of post to update: "
     input = gets
 
     if int_argument_error?(input)
@@ -59,15 +59,15 @@ class CommentsController
       return 'error'
     end
 
-    puts "Text of comment with index #{index}:"
-    puts "#{@comments[index]}"
+    puts "Text of post with index #{index}:"
+    puts "#{@posts[index]}"
 
-    puts "Write a new comment:"
-    @comments[index] = gets.chomp
+    puts "Write a new post:"
+    @posts[index] = gets.chomp
   end
 
   def destroy
-    print "Enter index of comment to delete: "
+    print "Enter index of post to delete: "
     input = gets
 
     if int_argument_error?(input)
@@ -82,6 +82,6 @@ class CommentsController
       return 'error'
     end
 
-    @comments.delete_at(index)
+    @posts.delete_at(index)
   end
 end
